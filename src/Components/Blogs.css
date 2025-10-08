@@ -1,0 +1,327 @@
+.blogs {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+}
+
+/* --- LEFT --- */
+.blogs-left {
+  flex: 1;
+  background: linear-gradient(rgba(184, 42, 252, 0.3), rgba(104, 119, 244, 0.2)),
+    url("../assets/images/bg.jpg") center/cover no-repeat;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-img {
+  width: clamp(12rem, 18vmin, 22rem);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 0.4rem solid #6877f4;
+  box-shadow: 0 0 2rem rgba(104, 119, 244, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 3rem rgba(104, 119, 244, 0.6);
+}
+
+.blogs-right {
+  flex: 1;
+  background: #f8f9fd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  row-gap: 5rem;
+  padding: 3rem;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+.blogs-right.centered {
+  justify-content: center;
+}
+
+/* --- FORM CONTAINER --- */
+.blogs-right-form {
+  width: 90%;
+  max-width: 600px;
+  background: #ffffff;
+  padding: 3rem 4rem;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(104, 119, 244, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.blogs-right-form h1 {
+  font-family: "Comfortaa", sans-serif;
+  text-align: center;
+  font-size: clamp(2rem, 5cqi, 6rem);
+  background: linear-gradient(to right, #b88efc, #6877f4);
+  font-weight: 700;
+  color: #6877f4;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blogs-right-form form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4rem;
+}
+
+/* --- UPLOAD IMAGE --- */
+.img-upload {
+  text-align: center;
+}
+
+.file-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(to right, #b88efc, #6877f4);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border-radius: 3rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload i {
+  font-size: 2em;
+  color: #fff;
+}
+
+.file-upload:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.8rem 2rem rgba(104, 119, 244, 0.3);
+}
+
+#file-upload {
+  display: none;
+}
+
+/* --- INPUT FIELDS --- */
+.title-input,
+textarea {
+  width: 100%;
+  border: 2px solid #e0e3f3;
+  border-radius: 0.8rem;
+  padding: 1.2rem 1.6rem;
+  font-size: 1.6rem;
+  font-family: "Kanit", sans-serif;
+  resize: none;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.title-input:focus,
+textarea:focus {
+  border-color: #6877f4;
+  box-shadow: 0 0 0 3px rgba(104, 119, 244, 0.2);
+  outline: none;
+}
+
+textarea {
+  height: 16rem;
+  line-height: 1.6;
+}
+
+.title-input::placeholder,
+textarea::placeholder {
+  font-family: "Confortaa", sans-serif;
+  font-size: 1.3rem;
+  color: #b88efc;
+  opacity: 0.5;
+}
+
+.title-input::placeholder {
+  font-size: 1.6rem;
+}
+
+/* --- SUBMIT BUTTON --- */
+.submit-btn {
+  width: 100%;
+  padding: 1.4rem;
+  border: none;
+  border-radius: 5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  background: linear-gradient(to left, #b88efc, #6877f4);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2rem rgba(104, 119, 244, 0.3);
+}
+
+.submit-btn:active {
+  transform: scale(0.97);
+}
+
+/* --- ANIMATION --- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .blogs-right-form {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .blogs-right-form h1 {
+    font-size: 2.4rem;
+  }
+
+  .file-upload {
+    font-size: 1.4rem;
+  }
+}
+
+/* --- BUTTON: CREATE --- */
+.post-btn {
+  width: clamp(22rem, 28vmin, 36rem);
+  aspect-ratio: 4 / 1;
+  background: linear-gradient(to right, #b88efc, #6877f4);
+  border: none;
+  border-radius: 5rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.post-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(104, 119, 244, 0.3);
+}
+
+.post-btn:active {
+  transform: scale(0.97);
+}
+
+.submit-success {
+  font-size: 4rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #b88efc, #6877f4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInOut 2s ease-in-out forwards;
+  text-align: center;
+}
+
+/* Hiệu ứng mờ dần */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+/* --- BUTTON: BACK --- */
+.blogs-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2.8rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.blogs-close-btn:hover {
+  color: #6877f4;
+  text-shadow: 0 0 8px rgba(104, 119, 244, 0.4);
+  transform: translateY(-2px);
+}
+
+.blogs-close-btn i {
+  font-size: 3rem;
+}
+
+.preview-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.preview-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2);
+  z-index: 2;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .blogs {
+    flex-direction: column;
+  }
+
+  .blogs-left,
+  .blogs-right {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .user-img {
+    width: clamp(10rem, 25vw, 18rem);
+  }
+
+  .post-btn {
+    font-size: 1.8rem;
+  }
+}

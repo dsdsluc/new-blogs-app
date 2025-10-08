@@ -1,20 +1,24 @@
 .weather {
   width: 100%;
-  min-width: 28rem;
-  height: 45%;
+  max-width: 30rem;
   background-color: #111214;
-  padding: 2rem 1.5rem;
+  padding: 1.5rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 3rem;
+  row-gap: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
+
 .search {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: 0.8rem;
+  width: 100%;
 }
+
 .search-top {
   display: flex;
   align-items: center;
@@ -22,28 +26,32 @@
 }
 
 .search-top i {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   color: #ddd;
 }
 
 .location {
   font-family: "Comfortaa", sans-serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
   font-weight: bold;
   color: #fff;
+  word-break: break-word;
 }
+
 .search-location {
   position: relative;
+  width: 100%;
 }
 
 .search-location input {
-  width: clamp(15rem, 15cqi, 25rem);
-  height: 4rem;
+  width: 100%;
+  height: clamp(3rem, 5vw, 4rem);
   border: none;
   background-color: transparent;
   border-bottom: 0.1rem solid #aaa;
-  font-size: 1.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
   color: #ddd;
+  padding-left: 0.5rem;
 }
 
 .search-location i {
@@ -51,26 +59,45 @@
   top: 50%;
   transform: translateY(-50%);
   right: 1rem;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
   color: #fff;
+  cursor: pointer;
 }
+
 .weather-data {
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: 2rem;
+  row-gap: 1rem;
 }
 
 .weather-data i {
-  font-size: 5rem;
-}
-
-.weather-data i.bxs-sun {
+  font-size: clamp(2.5rem, 6vw, 4rem);
   color: #ffc87c;
 }
+
 .weather-type,
 .temp {
   font-family: "Comfortaa", sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   color: #ddd;
+  text-align: center;
+}
+
+/* Optional: màu icon theo thời tiết */
+.weather-data i.fa-cloud {
+  color: #bbb;
+}
+.weather-data i.fa-cloud-showers-heavy,
+.weather-data i.fa-cloud-rain {
+  color: #4da6ff;
+}
+.weather-data i.fa-snowflake {
+  color: #aee3ff;
+}
+.weather-data i.fa-bolt {
+  color: #ffd700;
+}
+.weather-data i.fa-smog {
+  color: #aaa;
 }

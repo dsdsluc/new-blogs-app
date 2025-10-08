@@ -8,6 +8,7 @@ import noImage from "../assets/images/no-img.jpg";
 import axios from "axios";
 import NewModal from "./NewModal";
 import Bookmark from "./Bookmark";
+import BlogModal from "./BlogModal";
 
 const categoriesList = [
   "general",
@@ -19,13 +20,24 @@ const categoriesList = [
   "nation",
 ];
 
-const News = () => {
+const News = ({ onShowBlogs, blogs, onDeleteBlog }) => {
   const [headlines, setHeadlines] = useState(null);
   const [news, setNews] = useState([]);
   const [useModal, setUseModal] = useState(false);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [category, setCategory] = useState("general");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedBlog, setSelectedBlog] = useState(null);
+
+  // --- Hàm xử lý khi click vào blog ---
+  const handleOpenModal = (blog) => {
+    setSelectedBlog(blog);
+  };
+
+  // --- Hàm đóng modal ---
+  const handleCloseModal = () => {
+    setSelectedBlog(null);
+  };
 
   const [bookmarks, setBookmarks] = useState(() => {
     const saved = localStorage.getItem("bookmarks");
@@ -148,7 +160,7 @@ const News = () => {
       <div className="news-content">
         {/* Sidebar */}
         <aside className="nav-bar">
-          <div className="user">
+          <div className="user" onClick={onShowBlogs}>
             <img src={userImage} alt="User Image" />
             <p>Mary Blogs</p>
           </div>
@@ -252,8 +264,48 @@ const News = () => {
           onDeleteBookmark={handleBookmarkClick}
         />
 
-        {/* My Blogs */}
-        <div className="my-blogs">My Blogs</div>
+        <div className="my-blogs">
+          <div className="my-blogs-header">
+            <h1 className="my-blogs-heading">My Blogs</h1>
+          </div>
+
+          <div className="blog-posts">
+            {blogs.length === 0 ? (
+              <p className="no-posts">You haven’t created any posts yet.</p>
+            ) : (
+              blogs.map((blog) => (
+                <div
+                  className="blog-post"
+                  key={blog.id}
+                  onClick={() => handleOpenModal(blog)}
+                >
+                  {blog.image && <img src={blog.image} alt="Post" />}
+                  <h3>{blog.title}</h3>
+                  <p className="blog-date">{blog.createdAt}</p>
+                  <div className="post-buttons">
+                    <button className="edit-post">
+                      <i className="bx bxs-edit"></i>
+                    </button>
+                    <button
+                      className="delete-post"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDeleteBlog(blog.id);
+                      }}
+                    >
+                      <i className="bx bxs-x-circle"></i>
+                    </button>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Hiện modal nếu người dùng chọn blog */}
+          {selectedBlog && (
+            <BlogModal blog={selectedBlog} onClose={handleCloseModal} />
+          )}
+        </div>
 
         {/* Weather & Calendar */}
         <div className="weather-calender">
@@ -261,9 +313,6 @@ const News = () => {
           <Calender />
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="news-footer">Footer</footer>
     </div>
   );
 };
